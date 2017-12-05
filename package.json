@@ -17,14 +17,17 @@
     "@storybook/react": "3.2.16",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
+    "babel-jest": "21.2.0",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-preset-env": "1.6.1",
     "babel-preset-flow": "6.23.0",
     "babel-preset-react": "6.24.1",
+    "enzyme": "3.2.0",
+    "enzyme-adapter-react-16": "1.1.0",
     "flow-bin": "0.59.0",
-    "prettier": "1.8.2",
-    "react-test-renderer": "16.1.1"
+    "jest": "21.2.1",
+    "prettier": "1.8.2"
   },
   "jest": {
     "testMatch": ["**/__tests__/**/*.(spec|test).js"]
