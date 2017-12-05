@@ -1,0 +1,18 @@
+{
+  "plugins": ["transform-class-properties", "transform-object-rest-spread"],
+  "presets": ["react", "flow"],
+
+  "env": {
+    "production": {
+      "plugins": ["transform-class-properties", "transform-object-rest-spread"],
+      "presets": [
+        [
+          "env",
+          {
+            "targets": { "browsers": ["last 2 versions", "IE 10"] }
+          }
+        ]
+      ]
+    }
+  }
+}

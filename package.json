@@ -1,0 +1,39 @@
+{
+  "name": "react-typeahead",
+  "version": "0.1.0",
+  "description": "Simplest typeahead with suggestion.",
+  "main": "lib/index.js",
+  "files": ["lib/"],
+  "dependencies": {
+    "react": ">=16",
+    "react-dom": ">=16"
+  },
+  "peerDependencies": {
+    "react": ">=15",
+    "react-dom": ">=15"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "3.2.16",
+    "@storybook/react": "3.2.16",
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-flow": "6.23.0",
+    "babel-preset-react": "6.24.1",
+    "flow-bin": "0.59.0",
+    "prettier": "1.8.2",
+    "react-test-renderer": "16.1.1"
+  },
+  "jest": {
+    "testMatch": ["**/__tests__/**/*.(spec|test).js"]
+  },
+  "scripts": {
+    "test": "NODE_ENV=test jest --verbose",
+    "build":
+      "rm -rf lib && NODE_ENV=production babel --out-dir ./lib --ignore '**/__tests__/' ./src ",
+    "storybook": "start-storybook -p 6006",
+    "build:storybook": "NODE_ENV=production build-storybook"
+  }
+}
