@@ -26,7 +26,7 @@ it('should render typeahead, display list on focus, and change value on click', 
   c.mount()
 
   // check for the list
-  const options = c.find('.typeahead-list').children()
+  const options = c.find('.typeahead-options').children()
 
   expect(options.at(0).text()).toBe('a')
   expect(options.at(1).text()).toBe('b')

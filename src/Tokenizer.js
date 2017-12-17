@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typeahead } from './index'
 
-export const removeDupEqual = equal => arr =>
+const removeDupEqual = equal => arr =>
   arr.filter((x, i, arr) => arr.findIndex(u => equal(u, x)) === i)
 
 const defaultRenderItem = ({ item, onDelete, ...props }) => (
@@ -38,15 +38,15 @@ export type Props = {
 
   options: Item[],
 
-  equal?: (a: Item, b: Item) => boolean,
-  renderItem?: ({ item: Item, onDelete: () => void }) => *,
+  equal: (a: Item, b: Item) => boolean,
+  renderItem: ({ item: Item, onDelete: () => void }) => *,
   renderOption?: ({ option: Item, isHighlighted: boolean }) => *,
 
   placeholder?: string,
   className?: string,
   style?: Object,
-  typeaheadClassName?: string,
-  typeaheadStyle?: Object,
+  customClassName: { [string]: string },
+  customStyle: { [string]: Object },
 }
 
 export const Tokenizer = ({
@@ -65,14 +65,25 @@ export const Tokenizer = ({
   placeholder,
   className,
   style,
-  typeaheadClassName,
-  typeaheadStyle,
+  customClassName,
+  customStyle,
 }: Props) => (
   <div
-    className={'tokenizer ' + (className || '')}
-    style={{ position: 'relative', ...(style || {}) }}
+    className={
+      'tokenizer ' + (className || ' ') + (customClassName.tokenizer || '')
+    }
+    style={{
+      ...(style || {}),
+      ...(customStyle.tokenizer || {}),
+    }}
   >
-    <div className="tokenizer-list">
+    <div
+      className={'tokenizer-values ' + (customClassName.values || '')}
+      style={{
+        ...(style || {}),
+        ...(customStyle.values || {}),
+      }}
+    >
       {value.map(item =>
         renderItem({
           item,
@@ -88,8 +99,8 @@ export const Tokenizer = ({
       options={options}
       renderOption={renderOption}
       placeholder={placeholder}
-      className={typeaheadClassName}
-      style={typeaheadStyle}
+      customStyle={customStyle}
+      customClassName={customClassName}
     />
   </div>
 )
@@ -98,4 +109,6 @@ Tokenizer.defaultProps = {
   renderItem: defaultRenderItem,
   equal: defaultEqual,
   value: [],
+  customClassName: {},
+  customStyle: {},
 }

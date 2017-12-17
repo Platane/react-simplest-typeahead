@@ -27,15 +27,17 @@ export type Props = {
   close: () => void,
 
   indexHighlighted: number | null,
-  highligh: (index: number | null) => void,
+  onOptionHover: (index: number | null) => void,
   onKeyDown: (keyboardEvent: KeyboardEvent) => void,
 
   options: Item[],
 
+  placeholder?: string,
   renderOption: ({ option: Item, isHighlighted: boolean }) => *,
   className?: string,
   style?: Object,
-  placeholder?: string,
+  customClassName: { ['typeahead' | 'input' | 'options']: string },
+  customStyle: { ['typeahead' | 'input' | 'options']: Object },
 }
 
 export const Typeahead = ({
@@ -49,23 +51,32 @@ export const Typeahead = ({
   close,
 
   indexHighlighted,
-  highligh,
+  onOptionHover,
   onKeyDown,
 
   options,
   renderOption,
+  placeholder,
+
   className,
   style,
-  placeholder,
+  customClassName,
+  customStyle,
 }: Props) => (
   <div
-    className={'typeahead ' + (className || '')}
-    style={{ position: 'relative', ...(style || {}) }}
+    className={
+      'typeahead ' + (className || ' ') + (customClassName.typeahead || '')
+    }
+    style={{
+      position: 'relative',
+      ...(style || {}),
+      ...(customStyle.typeahead || {}),
+    }}
   >
     <input
       type="text"
-      className="typeahead-input"
-      style={{ ...style_input, ...(style || {}) }}
+      className={'typeahead-input ' + (customClassName.input || '')}
+      style={{ ...style_input, ...(customStyle.input || {}) }}
       value={(opened ? pattern : value) || ''}
       placeholder={placeholder}
       onBlur={close}
@@ -74,13 +85,18 @@ export const Typeahead = ({
       onChange={e => onPatternChange(e.target.value)}
     />
     {opened && (
-      <div className="typeahead-list" style={style_list}>
+      <div
+        className={
+          'typeahead-options ' + (customClassName.options || '')
+        }
+        style={{ ...style_options, ...(customStyle.options || {}) }}
+      >
         {options.map((option, i) =>
           renderOption({
             option,
             isHighlighted: indexHighlighted === i,
             onMouseDown: () => onChange(option),
-            onMouseOver: () => highligh(i),
+            onMouseOver: () => onOptionHover(i),
           })
         )}
       </div>
@@ -90,9 +106,11 @@ export const Typeahead = ({
 
 Typeahead.defaultProps = {
   renderOption: defaultRenderOption,
+  customClassName: {},
+  customStyle: {},
 }
 
-const style_list = {
+const style_options = {
   position: 'absolute',
   border: 'solid 1px #eee',
   width: '100%',

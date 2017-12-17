@@ -7,7 +7,7 @@ import { withValue } from './hoc.withValue'
 const TypeaheadStateful = withValue(Typeahead)
 
 storiesOf('Typeahead', module)
-  .add('default (with filter logic)', () => (
+  .add('default (without filter logic)', () => (
     <div style={{ margin: '20px' }}>
       <Typeahead
         pattern="a"
@@ -40,6 +40,20 @@ storiesOf('Typeahead', module)
   .add('hold value', () => (
     <div style={{ margin: '20px' }}>
       <TypeaheadStateful
+        initValue="aa"
+        pattern=""
+        options={['aa', 'ab', 'bb', 'aaa', 'bbb']}
+      />
+    </div>
+  ))
+  .add('custom style', () => (
+    <div style={{ margin: '20px' }}>
+      <TypeaheadStateful
+        customStyle={{
+          input: { backgroundColor: 'blue' },
+          typeahead: { backgroundColor: 'orange', padding: '10px' },
+          options: { backgroundColor: 'purple' },
+        }}
         initValue="aa"
         pattern=""
         options={['aa', 'ab', 'bb', 'aaa', 'bbb']}

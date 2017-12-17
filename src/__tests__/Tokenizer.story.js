@@ -7,7 +7,7 @@ import { withValue } from './hoc.withValue'
 const TokenizerStateful = withValue(Tokenizer)
 
 storiesOf('Tokenizer', module)
-  .add('default (with filter logic)', () => (
+  .add('default (without filter logic)', () => (
     <div style={{ margin: '20px' }}>
       <Tokenizer
         value={['cc', 'ac', 'aa']}
@@ -46,6 +46,22 @@ storiesOf('Tokenizer', module)
   .add('hold value', () => (
     <div style={{ margin: '20px' }}>
       <TokenizerStateful
+        initValue={['cc', 'ac', 'aa']}
+        pattern=""
+        options={['aa', 'ab', 'bb', 'aaa', 'bbb']}
+      />
+    </div>
+  ))
+  .add('custom style', () => (
+    <div style={{ margin: '20px' }}>
+      <TokenizerStateful
+        customStyle={{
+          tokenizer: { backgroundColor: 'yellow', padding: '10px' },
+          values: { backgroundColor: 'green' },
+          input: { backgroundColor: 'blue' },
+          typeahead: { backgroundColor: 'orange', padding: '10px' },
+          options: { backgroundColor: 'purple' },
+        }}
         initValue={['cc', 'ac', 'aa']}
         pattern=""
         options={['aa', 'ab', 'bb', 'aaa', 'bbb']}
