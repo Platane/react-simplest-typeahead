@@ -1,5 +1,6 @@
 import React from 'react'
-import { Typeahead } from './index'
+import { Typeahead } from './Typeahead'
+import type { Props as TypeaheadProps } from './Typeahead'
 
 const removeDupEqual = equal => arr =>
   arr.filter((x, i, arr) => arr.findIndex(u => equal(u, x)) === i)
@@ -30,43 +31,45 @@ const defaultEqual = (a: Item, b: Item): boolean => a === b
 export type Item = any
 
 export type Props = {
+  ...TypeaheadProps,
+
   value: Item[],
   onChange: (items: Item[]) => void,
 
-  pattern: string,
-  onPatternChange: (pattern: string) => void,
-
-  options: Item[],
-
   equal: (a: Item, b: Item) => boolean,
   renderItem: ({ item: Item, onDelete: () => void }) => *,
-  renderOption?: ({ option: Item, isHighlighted: boolean }) => *,
 
-  placeholder?: string,
   className?: string,
   style?: Object,
-  customClassName: { [string]: string },
-  customStyle: { [string]: Object },
+  customClassName: {
+    typeahead?: string,
+    input?: string,
+    options?: string,
+    values?: string,
+    tokenizer?: string,
+  },
+  customStyle: {
+    typeahead?: Object,
+    input?: Object,
+    options?: Object,
+    values?: Object,
+    tokenizer?: Object,
+  },
 }
 
 export const Tokenizer = ({
   onChange,
   value,
 
-  pattern,
-  onPatternChange,
-
-  options,
-
   equal,
   renderItem,
-  renderOption,
 
-  placeholder,
   className,
   style,
   customClassName,
   customStyle,
+
+  ...props
 }: Props) => (
   <div
     className={
@@ -94,13 +97,9 @@ export const Tokenizer = ({
     <Typeahead
       onChange={x => onChange(removeDupEqual(equal)([...value, x]))}
       value=""
-      pattern={pattern}
-      onPatternChange={onPatternChange}
-      options={options}
-      renderOption={renderOption}
-      placeholder={placeholder}
       customStyle={customStyle}
       customClassName={customClassName}
+      {...props}
     />
   </div>
 )

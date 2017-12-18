@@ -2,12 +2,12 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { Typeahead } from '../index'
-import { withValue } from './hoc.withValue'
+import { withValue } from './util/hoc.withValue'
 
 const TypeaheadStateful = withValue(Typeahead)
 
 storiesOf('Select', module)
-  .add('default', () => (
+  .add('default (stateless)', () => (
     <div style={{ margin: '20px' }}>
       <Typeahead
         pattern=""

@@ -23,9 +23,9 @@ type Props = {
 type Options = {
   filter?: (pattern: string) => (x: string) => boolean,
   maxDisplayed?: number,
-}
+} | void
 
-export const injectFilterState = (options: Options) => {
+export const injectFilterState = (options: Options = {}) => {
   const filter = (options && options.filter) || defaultFilter
   const maxDisplayed = (options && options.maxDisplayed) || Infinity
 

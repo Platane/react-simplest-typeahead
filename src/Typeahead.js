@@ -36,8 +36,16 @@ export type Props = {
   renderOption: ({ option: Item, isHighlighted: boolean }) => *,
   className?: string,
   style?: Object,
-  customClassName: { ['typeahead' | 'input' | 'options']: string },
-  customStyle: { ['typeahead' | 'input' | 'options']: Object },
+  customClassName: {
+    typeahead?: string,
+    input?: string,
+    options?: string,
+  },
+  customStyle: {
+    typeahead?: Object,
+    input?: Object,
+    options?: Object,
+  },
 }
 
 export const Typeahead = ({
@@ -86,9 +94,7 @@ export const Typeahead = ({
     />
     {opened && (
       <div
-        className={
-          'typeahead-options ' + (customClassName.options || '')
-        }
+        className={'typeahead-options ' + (customClassName.options || '')}
         style={{ ...style_options, ...(customStyle.options || {}) }}
       >
         {options.map((option, i) =>

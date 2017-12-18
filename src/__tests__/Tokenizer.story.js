@@ -2,12 +2,12 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { Tokenizer } from '../index'
-import { withValue } from './hoc.withValue'
+import { withValue } from './util/hoc.withValue'
 
 const TokenizerStateful = withValue(Tokenizer)
 
 storiesOf('Tokenizer', module)
-  .add('default (without filter logic)', () => (
+  .add('default (stateless)', () => (
     <div style={{ margin: '20px' }}>
       <Tokenizer
         value={['cc', 'ac', 'aa']}
@@ -18,7 +18,7 @@ storiesOf('Tokenizer', module)
       />
     </div>
   ))
-  .add('arbitrary object value', () => (
+  .add('arbitrary object value (again, stateless)', () => (
     <div style={{ margin: '20px' }}>
       <Tokenizer
         value={[{ label: 'cc' }, { label: 'ac' }, { label: 'aa' }]}
