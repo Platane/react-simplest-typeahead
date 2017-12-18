@@ -4,6 +4,7 @@
   "description": "Simplest typeahead with suggestion.",
   "main": "lib/index.js",
   "files": ["lib/"],
+  "repository": "https://github.com/Platane/react-simplest-typeahead",
   "dependencies": {
     "react": ">=16",
     "react-dom": ">=16"
