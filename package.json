@@ -1,6 +1,6 @@
 {
   "name": "react-simplest-typeahead",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simplest typeahead with suggestion.",
   "main": "lib/index.js",
   "files": ["lib/"],

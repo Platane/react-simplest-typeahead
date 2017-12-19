@@ -1,5 +1,4 @@
 import React from 'react'
-import type { Component } from 'react'
 
 const defaultRenderOption = ({ option, isHighlighted, ...props }) => (
   <div

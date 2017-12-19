@@ -33,7 +33,7 @@ export const injectFilterState = (options: Options = {}) => {
     class FilterState extends React.Component<Props, State> {
       state: State = { pattern: '' }
 
-      onChange = (value: string) => {
+      onChange = (value: Item) => {
         this.setState({ pattern: '' })
         if (this.props.onChange) this.props.onChange(value)
       }

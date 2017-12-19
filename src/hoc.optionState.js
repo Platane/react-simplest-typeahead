@@ -27,9 +27,10 @@ export const injectOptionState = C =>
       this.setState({ opened: false, indexHighlighted: -1 })
     }
 
-    onOptionHover = (indexHighlighted: number) => this.setState({ indexHighlighted })
+    onOptionHover = (indexHighlighted: number) =>
+      this.setState({ indexHighlighted })
 
-    onChange = (value: string) => {
+    onChange = (value: Item) => {
       if (this.props.onChange) this.props.onChange(value)
       this.close()
     }

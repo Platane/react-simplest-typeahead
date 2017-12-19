@@ -1,6 +1,9 @@
 import React from 'react'
 import { Typeahead } from './Typeahead'
+import { injectOptionState } from './hoc.optionState'
 import type { Props as TypeaheadProps } from './Typeahead'
+
+const TypeaheadWithOptionState = injectOptionState(Typeahead)
 
 const removeDupEqual = equal => arr =>
   arr.filter((x, i, arr) => arr.findIndex(u => equal(u, x)) === i)
@@ -94,12 +97,12 @@ export const Tokenizer = ({
         })
       )}
     </div>
-    <Typeahead
+    <TypeaheadWithOptionState
+      {...props}
       onChange={x => onChange(removeDupEqual(equal)([...value, x]))}
       value=""
       customStyle={customStyle}
       customClassName={customClassName}
-      {...props}
     />
   </div>
 )
