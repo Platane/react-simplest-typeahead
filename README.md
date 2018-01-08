@@ -2,9 +2,7 @@
 
 yet another typeahead component
 
-[![wercker status](https://app.wercker.com/status/315b74edfe5584956bf25ce9d92109c4/s/master "wercker status")](https://app.wercker.com/project/byKey/315b74edfe5584956bf25ce9d92109c4)
-
-[![npm](https://img.shields.io/npm/v/react-simplest-typeahead.svg)](https://www.npmjs.com/package/react-simplest-typeahead)
+[![wercker status](https://app.wercker.com/status/315b74edfe5584956bf25ce9d92109c4/s/master "wercker status")](https://app.wercker.com/project/byKey/315b74edfe5584956bf25ce9d92109c4) [![npm](https://img.shields.io/npm/v/react-simplest-typeahead.svg)](https://www.npmjs.com/package/react-simplest-typeahead)
 
 [storybook](https://platane.github.io/react-simplest-typeahead)
 
@@ -92,9 +90,9 @@ const UserSelector = ({ selectedUser, onSelectUser, users }) => (
 * `className ?: string` the className to set on the container element. ( useful
   when using styled-component syntax )
 * `style ?: Object` the style to apply on the container element.
-* `cusmtomClassName ?: { ['typeahead' | 'input' | 'options']: string }` custom
+* `customClassName ?: { ['typeahead' | 'input' | 'options']: string }` custom
   className for each element
-* `cusmtomStyle ?: { ['typeahead' | 'input' | 'options']: Obect }` custom style
+* `customStyle ?: { ['typeahead' | 'input' | 'options']: Obect }` custom style
   object for each element
 
 **filtering state**
@@ -143,7 +141,7 @@ Also, it take additional props for styling:
 
 And declare another elements that accepts custom styling
 
-* `cusmtomClassName ?: { ['tokenizer' | 'value' | 'typeahead' | 'input' |
+* `customClassName ?: { ['tokenizer' | 'value' | 'typeahead' | 'input' |
   'options']: string }` custom className for each element
-* `cusmtomStyle ?: { ['tokenizer' | 'value' | 'typeahead' | 'input' |
+* `customStyle ?: { ['tokenizer' | 'value' | 'typeahead' | 'input' |
   'options']: Obect }` custom style object for each element
