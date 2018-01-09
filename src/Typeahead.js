@@ -1,8 +1,9 @@
 import React from 'react'
 
-const defaultRenderOption = ({ option, isHighlighted, ...props }) => (
+const defaultRenderOption = ({ option, isHighlighted, onMouseDown, onMouseOver }) => (
   <div
-    {...props}
+    onMouseDown={onMouseDown}
+    onMouseOver={onMouseOver}
     key={option.toString()}
     style={{
       backgroundColor: isHighlighted ? '#ddd' : 'transparent',
@@ -69,6 +70,9 @@ export const Typeahead = ({
   style,
   customClassName,
   customStyle,
+
+  ...props
+
 }: Props) => (
   <div
     className={
@@ -98,6 +102,8 @@ export const Typeahead = ({
       >
         {options.map((option, i) =>
           renderOption({
+            ...props,
+            pattern,
             option,
             isHighlighted: indexHighlighted === i,
             onMouseDown: () => onChange(option),

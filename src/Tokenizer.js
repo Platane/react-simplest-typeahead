@@ -8,9 +8,8 @@ const TypeaheadWithOptionState = injectOptionState(Typeahead)
 const removeDupEqual = equal => arr =>
   arr.filter((x, i, arr) => arr.findIndex(u => equal(u, x)) === i)
 
-const defaultRenderItem = ({ item, onDelete, ...props }) => (
+const defaultRenderItem = ({ item, onDelete }) => (
   <div
-    {...props}
     key={item.toString()}
     style={{
       padding: '10px',
@@ -92,6 +91,7 @@ export const Tokenizer = ({
     >
       {value.map(item =>
         renderItem({
+          ...props,
           item,
           onDelete: () => onChange(value.filter(u => !equal(u, item))),
         })
