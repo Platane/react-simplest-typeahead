@@ -2,7 +2,8 @@
 
 yet another typeahead component
 
-[![wercker status](https://app.wercker.com/status/315b74edfe5584956bf25ce9d92109c4/s/master "wercker status")](https://app.wercker.com/project/byKey/315b74edfe5584956bf25ce9d92109c4) [![npm](https://img.shields.io/npm/v/react-simplest-typeahead.svg)](https://www.npmjs.com/package/react-simplest-typeahead)
+[![wercker status](https://app.wercker.com/status/315b74edfe5584956bf25ce9d92109c4/s/master "wercker status")](https://app.wercker.com/project/byKey/315b74edfe5584956bf25ce9d92109c4)
+[![npm](https://img.shields.io/npm/v/react-simplest-typeahead.svg)](https://www.npmjs.com/package/react-simplest-typeahead)
 
 [storybook](https://platane.github.io/react-simplest-typeahead)
 
@@ -92,7 +93,7 @@ const UserSelector = ({ selectedUser, onSelectUser, users }) => (
 * `style ?: Object` the style to apply on the container element.
 * `customClassName ?: { ['typeahead' | 'input' | 'options']: string }` custom
   className for each element
-* `customStyle ?: { ['typeahead' | 'input' | 'options']: Obect }` custom style
+* `customStyle ?: { ['typeahead' | 'input' | 'options']: Object }` custom style
   object for each element
 
 **filtering state**
@@ -128,10 +129,7 @@ change is that the value is an array of items, instead of the single one:
 * `value : Item[]`
 * `onChange : ( items: Item[] ) => void`
 
-As the value includes only distinct items, you should pass a custom equal
-function if the item are more complexes than primitive.
-
-* `equal: (a: Item, b: Item) => boolean`
+- `uniqueValue : boolean` if true, item should be unique in the value array
 
 **styling**
 
@@ -143,5 +141,18 @@ And declare another elements that accepts custom styling
 
 * `customClassName ?: { ['tokenizer' | 'value' | 'typeahead' | 'input' |
   'options']: string }` custom className for each element
-* `customStyle ?: { ['tokenizer' | 'value' | 'typeahead' | 'input' |
-  'options']: Obect }` custom style object for each element
+* `customStyle ?: { ['tokenizer' | 'value' | 'typeahead' | 'input' | 'options']:
+  Object }` custom style object for each element
+
+
+## hoc.filterState
+
+`injectFilterState` enhance a typeahead component. The enhanced component should receive `options` as props. It hold the pattern, inject the `pattern` and `onPatternChange` props and alter the `options` array accordingly.
+
+injectFilterState accept as param:
+
+- `filter?: (pattern: string, props: Object) => (x: Item) => boolean`
+- `sort?: (pattern: string, props: Object) => (a: Item, b: Item) => 1 | -1 | 0`
+- `maxDisplayed?: number`
+
+

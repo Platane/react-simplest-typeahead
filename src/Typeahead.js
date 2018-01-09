@@ -1,6 +1,11 @@
 import React from 'react'
 
-const defaultRenderOption = ({ option, isHighlighted, onMouseDown, onMouseOver }) => (
+const defaultRenderOption = ({
+  option,
+  isHighlighted,
+  onMouseDown,
+  onMouseOver,
+}) => (
   <div
     onMouseDown={onMouseDown}
     onMouseOver={onMouseOver}
@@ -72,7 +77,6 @@ export const Typeahead = ({
   customStyle,
 
   ...props
-
 }: Props) => (
   <div
     className={
@@ -103,6 +107,7 @@ export const Typeahead = ({
         {options.map((option, i) =>
           renderOption({
             ...props,
+            i,
             pattern,
             option,
             isHighlighted: indexHighlighted === i,

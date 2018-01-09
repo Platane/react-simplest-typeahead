@@ -42,6 +42,7 @@ storiesOf('Typeahead', module)
       <TypeaheadStateful
         initValue="aa"
         pattern=""
+        onPatternChange={action('change pattern')}
         options={['aa', 'ab', 'bb', 'aaa', 'bbb']}
       />
     </div>
@@ -56,6 +57,7 @@ storiesOf('Typeahead', module)
         }}
         initValue="aa"
         pattern=""
+        onPatternChange={action('change pattern')}
         options={['aa', 'ab', 'bb', 'aaa', 'bbb']}
       />
     </div>

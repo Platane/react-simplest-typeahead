@@ -5,12 +5,20 @@ import type { Props as TypeaheadProps } from './Typeahead'
 
 const TypeaheadWithOptionState = injectOptionState(Typeahead)
 
-const removeDupEqual = equal => arr =>
-  arr.filter((x, i, arr) => arr.findIndex(u => equal(u, x)) === i)
+const removeDup = arr => {
+  const m = new Map()
+  return arr.filter(x => {
+    const accept = m.has(x)
+    m.set(x, true)
+    return accept
+  })
+}
 
-const defaultRenderItem = ({ item, onDelete }) => (
+const identity = x => x
+
+const defaultRenderItem = ({ i, item, onDelete }) => (
   <div
-    key={item.toString()}
+    key={i}
     style={{
       padding: '10px',
     }}
@@ -28,18 +36,16 @@ const defaultRenderItem = ({ item, onDelete }) => (
   </div>
 )
 
-const defaultEqual = (a: Item, b: Item): boolean => a === b
-
 export type Item = any
 
 export type Props = {
   ...TypeaheadProps,
 
   value: Item[],
+  uniqueValue: boolean,
   onChange: (items: Item[]) => void,
 
-  equal: (a: Item, b: Item) => boolean,
-  renderItem: ({ item: Item, onDelete: () => void }) => *,
+  renderItem: ({ item: Item, onDelete: () => void, i: number }) => *,
 
   className?: string,
   style?: Object,
@@ -62,8 +68,8 @@ export type Props = {
 export const Tokenizer = ({
   onChange,
   value,
+  uniqueValue,
 
-  equal,
   renderItem,
 
   className,
@@ -89,17 +95,20 @@ export const Tokenizer = ({
         ...(customStyle.values || {}),
       }}
     >
-      {value.map(item =>
+      {value.map((item, i) =>
         renderItem({
           ...props,
+          i,
           item,
-          onDelete: () => onChange(value.filter(u => !equal(u, item))),
+          onDelete: () => onChange(value.filter((_, j) => i != j)),
         })
       )}
     </div>
     <TypeaheadWithOptionState
       {...props}
-      onChange={x => onChange(removeDupEqual(equal)([...value, x]))}
+      onChange={x =>
+        onChange((uniqueValue ? removeDup : identity)([...value, x]))
+      }
       value=""
       customStyle={customStyle}
       customClassName={customClassName}
@@ -108,8 +117,8 @@ export const Tokenizer = ({
 )
 
 Tokenizer.defaultProps = {
+  uniqueValue: false,
   renderItem: defaultRenderItem,
-  equal: defaultEqual,
   value: [],
   customClassName: {},
   customStyle: {},

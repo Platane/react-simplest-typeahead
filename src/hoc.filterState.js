@@ -3,7 +3,7 @@ import type { Component } from 'react'
 
 export type Item = any
 
-const defaultFilter = (pattern: string) => (x: Item): boolean =>
+const defaultFilter = (pattern: string, _: Object) => (x: Item): boolean =>
   x
     .toString()
     .toLowerCase()
@@ -21,11 +21,13 @@ type Props = {
 }
 
 type Options = {
-  filter?: (pattern: string) => (x: string) => boolean,
+  filter?: (pattern: string, props: Object) => (x: Item) => boolean,
+  sort?: (pattern: string, props: Object) => (a: Item, b: Item) => 1 | -1 | 0,
   maxDisplayed?: number,
 } | void
 
 export const injectFilterState = (options: Options = {}) => {
+  const sort = options && options.sort
   const filter = (options && options.filter) || defaultFilter
   const maxDisplayed = (options && options.maxDisplayed) || Infinity
 
@@ -47,8 +49,10 @@ export const injectFilterState = (options: Options = {}) => {
 
       render() {
         const options = this.props.options
-          .filter(filter(this.state.pattern))
+          .filter(filter(this.state.pattern, this.props))
           .slice(0, maxDisplayed)
+
+        if (sort) options.sort(sort(this.state.pattern, this.props))
 
         return (
           <C
