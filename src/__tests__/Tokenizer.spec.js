@@ -85,3 +85,27 @@ it('should render tokenizer, display list on focus, add value on click, filter o
     expect(c.find('.tokenizer-values').children().length).toBe(2)
   }
 })
+
+it('should not have duplicated value when uniqueValue=true', () => {
+  let c = Enzyme.mount(
+    <TokenizerFiltered
+      initValue={['a', 'c']}
+      options={['a', 'b', 'c', 'aa', 'aab']}
+      uniqueValue
+    />
+  )
+
+  // trigger click on an option, check for value change
+  {
+    c.find('input').simulate('focus')
+    c
+      .find('.typeahead-options')
+      .children()
+      .at(0)
+      .simulate('mousedown')
+
+    expect(c.state().value).toEqual(['a', 'c'])
+
+    expect(c.find('.tokenizer-values').children().length).toBe(2)
+  }
+})

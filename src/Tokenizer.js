@@ -8,7 +8,7 @@ const TypeaheadWithOptionState = injectOptionState(Typeahead)
 const removeDup = arr => {
   const m = new Map()
   return arr.filter(x => {
-    const accept = m.has(x)
+    const accept = !m.has(x)
     m.set(x, true)
     return accept
   })

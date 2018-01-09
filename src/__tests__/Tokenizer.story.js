@@ -18,6 +18,18 @@ storiesOf('Tokenizer', module)
       />
     </div>
   ))
+  .add('with unique value', () => (
+    <div style={{ margin: '20px' }}>
+      <Tokenizer
+        value={['cc', 'ac', 'aa']}
+        onChange={action('change')}
+        pattern="a"
+        onPatternChange={action('change pattern')}
+        options={['aa', 'ab', 'bb', 'aaa', 'bbb']}
+        uniqueValue
+      />
+    </div>
+  ))
   .add('arbitrary object value (again, stateless)', () => (
     <div style={{ margin: '20px' }}>
       <Tokenizer
