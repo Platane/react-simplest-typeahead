@@ -48,9 +48,9 @@ export const injectFilterState = (options: Options = {}) => {
       onPatternChange = (pattern: string) => this.setState({ pattern })
 
       render() {
-        const options = this.props.options
-          .filter(filter(this.state.pattern, this.props))
-          .slice(0, maxDisplayed)
+        const options = this.props.options.filter(
+          filter(this.state.pattern, this.props)
+        )
 
         if (sort) options.sort(sort(this.state.pattern, this.props))
 
@@ -58,7 +58,7 @@ export const injectFilterState = (options: Options = {}) => {
           <C
             {...this.props}
             {...this.state}
-            options={options}
+            options={options.slice(0, maxDisplayed)}
             onChange={this.onChange}
             onPatternChange={this.onPatternChange}
           />
