@@ -73,6 +73,14 @@ export const injectOptionState = C =>
         this.setState({ opened: true, indexHighlighted: 0 })
     }
 
+    componentWillReceiveProps(nextProps: Props) {
+      if (
+        nextProps.options.length <= this.state.indexHighlighted &&
+        this.state.opened
+      )
+        this.setState({ indexHighlighted: nextProps.options.length - 1 })
+    }
+
     render() {
       return (
         <C
