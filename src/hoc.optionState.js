@@ -39,6 +39,7 @@ export const injectOptionState = C =>
       const n = this.props.options.length
 
       switch (e.which) {
+        // <arrow up>
         case 38: {
           const indexHighlighted =
             (n + Math.max(0, this.state.indexHighlighted) - 1) % n
@@ -48,6 +49,8 @@ export const injectOptionState = C =>
             opened: true,
           })
         }
+
+        // <arrow down>
         case 40: {
           const indexHighlighted = (this.state.indexHighlighted + 1) % n
 
@@ -56,6 +59,10 @@ export const injectOptionState = C =>
             opened: true,
           })
         }
+
+        // <enter>
+        case 9:
+        // <tab>
         case 13: {
           const value = this.props.options[this.state.indexHighlighted]
           return value && this.onChange(value)
