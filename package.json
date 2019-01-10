@@ -7,13 +7,8 @@
     "lib/"
   ],
   "repository": "https://github.com/Platane/react-simplest-typeahead",
-  "dependencies": {
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
-  },
   "peerDependencies": {
-    "react": ">=15",
-    "react-dom": ">=15"
+    "react": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
     "@babel/cli": "7.2.3",
@@ -34,7 +29,9 @@
     "flow-bin": "0.89.0",
     "flow-typed": "2.5.1",
     "jest": "23.6.0",
-    "prettier": "1.15.3"
+    "prettier": "1.15.3",
+    "react": "16.7.0",
+    "react-dom": "16.7.0"
   },
   "jest": {
     "testMatch": [
