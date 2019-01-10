@@ -1,4 +1,3 @@
-
 box: node:8
 
 build:
@@ -13,6 +12,10 @@ build:
     - script:
       name: test
       code: yarn test
+
+    - script:
+      name: build
+      code: yarn flow
 
     - script:
       name: build

@@ -3,8 +3,5 @@
 .*/storybook-static/.*
 .*/.storybook/.*
 
-[libs]
-flow-typed
-
 [options]
 all=true

@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Component } from 'react'
+import type { ComponentType } from 'react'
 
 export type Item = any
 
@@ -31,7 +31,7 @@ export const injectFilterState = (options: Options = {}) => {
   const filter = (options && options.filter) || defaultFilter
   const maxDisplayed = (options && options.maxDisplayed) || Infinity
 
-  return C =>
+  return (C: ComponentType<*>) =>
     class FilterState extends React.Component<Props, State> {
       state: State = { pattern: '' }
 

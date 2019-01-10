@@ -32,13 +32,18 @@ export type Props = {
   close: () => void,
 
   indexHighlighted: number | null,
-  onOptionHover: (index: number | null) => void,
+  onOptionHover: (index: number) => void,
   onKeyDown: (keyboardEvent: KeyboardEvent) => void,
 
   options: Item[],
 
   placeholder?: string,
-  renderOption: ({ option: Item, isHighlighted: boolean }) => *,
+  renderOption: ({
+    option: Item,
+    isHighlighted: boolean,
+    onMouseDown: (e: MouseEvent) => void,
+    onMouseOver: (e: MouseEvent) => void,
+  }) => *,
   className?: string,
   style?: Object,
   customClassName: {

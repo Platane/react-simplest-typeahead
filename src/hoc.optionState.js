@@ -1,4 +1,5 @@
 import React from 'react'
+import type { ComponentType } from 'react'
 
 type Item = any
 
@@ -14,8 +15,8 @@ type Props = {
   options: Item[],
 }
 
-export const injectOptionState = C =>
-  class OptionListState extends React.Component<Props, State> {
+export const injectOptionState = (C: ComponentType<*>) =>
+  class OptionListState extends React.Component<*, State> {
     state: State = { opened: false, indexHighlighted: 0 }
 
     open = () => {
